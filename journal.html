@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block main %}
+<form class="journal"action="/journal" method="post">
+<!--Mood-->
+    <label for ="mood">How Are You Feeling Today (1 = Low, 10 = High)</label>
+    <input type="range" name="mood" min="1" max="10" value="5" class="form-range" id="mood" oninput="this.nextElementSibling.value = this.value">
+    <output class="number">5</output>
+
+
+<div>
+<label>Why are you feeling this way?</label>
+<textarea name="reason" class="form-control" placeholder="I'm feeling this way because..." required></textarea>
+</div>
+<!--Question & Reflection-->
+<div>
+    <h3>{{ question }}</h3>
+    <input type="hidden" name="question" value="{{ question }}">
+    <textarea name="answer" class="form-control" required></textarea>
+</div>
+<div>
+    <label for="tag">Choose A Category:</label>
+<select name="tag" class="form-control" id="tag">
+    <option value="#work">#work</option>
+    <option value="#social">#social</option>
+    <option value="#health">#health</option>
+    <option value="#family">#family</option>
+</select>
+</div>
+    <button type="submit" class="btn btn-primary mt-3">Save Entry</button>
+</form>
+<img src="{{ url_for('static', filename='writing.jpg') }}"
+     alt="Writing In A Journal"
+     class="img-fluid mx-auto d-block"
+     style="width: 500px; margin-bottom: 20px;">
+{% endblock %}
