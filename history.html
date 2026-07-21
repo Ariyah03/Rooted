@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<h1 class="completed-tasks">Completed Tasks</h1>
+<ul>
+    {% for task in tasks %}
+        <li class="finished-tasks">{{ task.task }}</li>
+{% endfor %}
+</ul>
+
+    <h1 class="history">Your History</h1>
+
+<h3 class="entries">Journal Entries</h3>
+{% for entry in entries %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><strong>{{ entry.date }}</strong> | Mood: {{ entry.mood }}/10 | Tag: {{ entry.tag }}</p>
+            <p><em>"{{ entry.question }}"</em>: {{ entry.answer }}</p>
+            <p><strong>Reasoning:</strong> {{ entry.reason }}</p>
+        </div>
+    </div>
+     {% else %}
+        <p class="no-data">No data yet! Start journaling and completing tasks to see your history appear here!</p>
+{% endfor %}
+{% endblock %}
