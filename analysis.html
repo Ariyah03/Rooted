@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block main %}
+    <h1 class="insights">Your Insights</h1>
+    <hr>
+
+    {% for row in stats %}
+        <div class="card mb-3 shadow-lg">
+            <div class="card-body">
+                <h4 class="category">Category: {{ row.tag }}</h4>
+                <p>Total Logged Entries: <strong>{{ row.count }}</strong></p>
+                <p>Average Mood: <strong>{{ "%.1f"|format(row.avg_mood) }} / 10</strong></p>
+                {% if row.avg_mood < 4 %}
+                    <p class="text-danger">You tend to feel lower on days tagged <strong>{{ row.tag }}</strong>. Consider taking a small break.</p>
+                {% elif row.avg_mood > 7 %}
+                    <p class="text-success">You tend to feel great on days tagged <strong>{{ row.tag }}</strong>. Keep doing what you are doing!:)</p>
+                {% else %}
+                    <p class="text">You feel neutral on days tagged <strong>{{ row.tag }}</strong>.</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p class="no-data">No data yet! Start journaling to see your insights appear here!</p>
+{% endfor %}
+{% endblock %}
