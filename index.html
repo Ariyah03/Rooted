@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 class="welcome">Hello, {{ user.username }}!</h1>
+    <p class="todo">Complete Activites To Level Up Your Plant!</p>
+
+    <!-- This next section will vary based on the user's experience -->
+    <div class="plant-display">
+        {% if user.experience < 100 %}
+            <p class="plant-status">Your plant is a seedling!</p>
+            <p class="plant-emoji">🌱</p>
+        {% elif user.experience < 300 %}
+            <p class="plant-status">Your plant is a growing sprout!</p>
+            <p class="plant-emoji">🌱</p>
+        {% elif user.experience < 600 %}
+            <p class="plant-status">Your plant is a potted plant!</p>
+            <p class="plant-emoji">🪴</p>
+        {% else %}
+            <p class="plant-status">Your plant is a flower!</p>
+            <p class="plant-display">💐</p>
+        {% endif %}
+    </div>
+
+    <p class="exp-counter"> Total Experience: {{ user.experience }}</p>
+
+<div class="activity-grid">
+    <a href="/tasks" class="activity-card"><span>🗁</span> Tasks</a>
+    <a href="/journal" class="activity-card"><span>✎ᝰ.</span> Journal</a>
+    <a href="/history" class="activity-card"><span>🔍︎</span> History</a>
+    <a href="/analysis" class="activity-card"><span>📊</span> Analysis</a>
+</div>
+{% endblock %}
