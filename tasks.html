@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block main %}
+<h1 class="create-tasks">Feel Free To Create Your Own Tasks, {{ user.username }}!</h1>
+
+<form class= "add-tasks" action="/tasks" method="post">
+    <input name="task" placeholder="Create Task" type="text" required>
+    <button type="submit">Add Task</button>
+</form>
+
+ <div class="tasks-container tasks">
+    <p class="tasks">Your Tasks Will Appear Here Once You Add Them!</p>
+ </div>
+
+ <ul>
+    {% for task in tasks %}
+    <li class="submit">
+        {{ task.task }}
+        <form action="/tasks" method="post" style="display:inline;">
+            <input type="hidden" name="complete_id" value="{{ task.id }}">
+            <button type="submit">Completed (+50 EXP)</button>
+        </form>
+    </li>
+    {% endfor %}
+ </ul>
+{% endblock %}
+
+
